@@ -15,6 +15,22 @@ namespace CMP1903_A1_2324
          * Use debug.assert() to make the comparisons and tests.
          */
 
-        //Method
+public Testing(Game Play)
+{
+    Console.WriteLine("Below is a test game to verify that everything works as intended.");
+    TestGame(Play);
+}
+public static void TestGame(Game Play)
+{
+    int TestDiceSum = Play.GetDiceRolls();
+    Die DieRoll = new Die();
+    Debug.Assert(TestDiceSum >= 3 && TestDiceSum <= 18, "The sum is an invalid result, out of range.");
+    for (int i = 0; i < 50; i++)
+    {
+        int TestRolls = DieRoll.Roll();
+        Debug.Assert(TestRolls >= 1 && TestRolls <= 6, "A die has given an invalid result, The dice's range isn't correct.");
+    }
+    Console.ReadLine();
+}
     }
 }
