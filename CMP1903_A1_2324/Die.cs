@@ -15,9 +15,19 @@ namespace CMP1903_A1_2324
 
         //Property
 
+        public int DiceValue { get; set; }
+        private static Random Generator = new Random();
 
-        //Method
+        public Die()
+        {
 
+        }
+
+        public int Roll()
+        {
+            int DiceValue = Generator.Next(1, 7);
+            return DiceValue;
+        }
 
     }
 }
