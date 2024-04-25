@@ -1,0 +1,38 @@
+class SevensOut
+    {
+        Die One = new Die();
+        public SevensOut()
+        {
+
+        }
+
+        public int PlaySevensOut()
+        {
+            int Total = 0;
+            int TimesRolled = 0;
+            int CurrentRoll = 0;
+            int StoreOne = One.Roll();
+            int StoreTwo = One.Roll();
+            while (StoreOne + StoreTwo != 7)
+            {
+                Debug.Assert(StoreOne + StoreTwo != 7, "The sum is seven but game did not stop.");
+                Console.WriteLine(StoreOne + ", " + StoreTwo);
+                CurrentRoll = CurrentRoll + StoreOne + StoreTwo;
+                if (StoreOne == StoreTwo)
+                {
+                    Total = Total + (CurrentRoll * 2);
+                    TimesRolled++;
+                }
+                else
+                {
+                    Total = Total + CurrentRoll;
+                    TimesRolled++;
+                }
+                StoreOne = One.Roll();
+                StoreTwo = One.Roll();
+            }
+            Console.WriteLine(StoreOne + ", " + StoreTwo);
+            Console.WriteLine("You rolled a 7, game over.");
+            return TimesRolled;
+        }
+    }
