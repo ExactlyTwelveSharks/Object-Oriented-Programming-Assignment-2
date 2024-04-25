@@ -1,0 +1,19 @@
+class Statistics
+    {
+        int SevensOutHighScore;
+        int ThreeOrMoreHighScore;
+        public Statistics()
+        { 
+
+        }
+
+        public void ShowStats(int a, int b, int c, int d)
+        {
+            if (c > SevensOutHighScore)
+            { SevensOutHighScore = c; }
+            if (d > ThreeOrMoreHighScore)
+            { ThreeOrMoreHighScore = d; }
+            Console.WriteLine("Sevens Out has been played " + a + " times. The number of successful rolls before getting a 7 was " + SevensOutHighScore);
+            Console.WriteLine("Three Or More has been played " + b + " times. The highest score a player reached was " + ThreeOrMoreHighScore);
+        }
+    }
