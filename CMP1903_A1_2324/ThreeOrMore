@@ -1,0 +1,140 @@
+class ThreeOrMore
+    {
+        Die One = new Die();
+        public ThreeOrMore()
+        {
+
+        }
+
+        public int PlayThreeOrMore()
+        {
+            bool GameWon = false;
+            int Player = 1;
+            int Player1Points = 0;
+            int Player2Points = 0;
+            while (GameWon == false)
+            {
+                if (Player == 1)
+                {
+                    Console.WriteLine("It's player 1's turn!");
+                }
+                if (Player == 2)
+                {
+                    Console.WriteLine("It's player 2's turn!");
+                }
+                int BiggestOfKind = 0;
+                int StoreOne = One.Roll();
+                int StoreTwo = One.Roll();
+                int StoreThree = One.Roll();
+                int StoreFour = One.Roll();
+                int StoreFive = One.Roll();
+                Console.WriteLine(StoreOne + ", " + StoreTwo + ", " + StoreThree + ", " + StoreFour + ", " + StoreFive);
+                int[] StoreAll = new int[] { StoreOne, StoreTwo, StoreThree, StoreFour, StoreFive };
+                int[] OfAKind = new int[StoreAll.Length];
+                for (int i = 0; i < StoreAll.Length; i++)
+                {
+                    int StoreOfAkind = 0;
+                    for (int j = 0; j < StoreAll.Length; j++)
+                    {
+                        if (StoreAll[i] == StoreAll[j])
+                        {
+                            StoreOfAkind++;
+                        }
+                    }
+                    OfAKind[i] = StoreOfAkind;
+                }
+                int BiggestOfAKind = OfAKind.Max();
+                if (BiggestOfAKind == 2)
+                {
+                    Console.WriteLine("Would you like to reroll all dice or just the remaining dice? Please say either ALL or REMAINING");
+                    string Answer = Console.ReadLine();
+                    if (Answer == "ALL")
+                    {
+                        for (int i = 0; i < StoreAll.Length; i++)
+                        {
+                            StoreAll[i] = One.Roll();
+                        }
+                    }
+                    if (Answer == "REMAINING")
+                    {
+                        for (int i = 0; i < OfAKind.Length; i++)
+                        {
+                            if (OfAKind[i] != BiggestOfAKind)
+                            { StoreAll[i] = One.Roll(); }
+                        }
+                    }
+                }
+                if (BiggestOfAKind > 2 || BiggestOfAKind < 2)
+                {
+                    BiggestOfKind = BiggestOfAKind;
+                }
+                if (BiggestOfKind == 3)
+                {
+                    if (Player == 1)
+                    {
+                        Player1Points += 3;
+                        Player = 2;
+                        Console.WriteLine("Player 2's turn!");
+                    }
+                    if (Player == 2)
+                    {
+                        Player2Points += 3;
+                        Player = 1;
+                        Console.WriteLine("Player 1's turn!");
+                    }
+                }
+                if (BiggestOfKind == 4)
+                {
+                    if (Player == 1)
+                    {
+                        Player1Points += 6;
+                        Player = 2;
+                        Console.WriteLine("Player 2's turn!");
+                    }
+                    if (Player == 2)
+                    {
+                        Player2Points += 6;
+                        Player = 1;
+                        Console.WriteLine("Player 1's turn!");
+                    }
+                }
+                if (BiggestOfKind == 5)
+                {
+                    if (Player == 1)
+                    {
+                        Player1Points += 12;
+                        Player = 2;
+                        Console.WriteLine("Player 2's turn!");
+                    }
+                    if (Player == 2)
+                    {
+                        Player2Points += 12;
+                        Player = 1;
+                        Console.WriteLine("Player 1's turn!");
+                    }
+                }
+                if (BiggestOfKind == 1)
+                {
+                    if (Player == 1)
+                    { 
+                        Player = 2;
+                    }
+                    if (Player == 2)
+                    { 
+                        Player = 1;
+                    }
+                }
+                if (Player1Points >= 20)
+                {
+                    Console.WriteLine("The winner is player 1!");
+                    return Player1Points;
+                }
+                else if (Player2Points >= 20)
+                {
+                    Console.WriteLine("The winner is player 2!");
+                    return Player2Points;
+                }
+            }
+            return 0;
+        }
+    }
